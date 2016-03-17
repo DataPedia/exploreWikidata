@@ -48,3 +48,7 @@ On peut aussi stocker la requête SPARQL dans un fichier texte (par exemple cats
 ### Ressources
 
 * [cURL examples to query Wikidata](http://colin.maudry.fr/curl-examples-to-query-wikidata/) par Colin Maudry
+
+## Outils
+
+* [Palladio](http://palladio.designhumanities.org/#/upload) permet de faire une requête SPARQL et de visualiser en tableur, en vignettes, sur une carte ou en réseaux.
