@@ -1,0 +1,22 @@
+
+PREFIX wd: <http://www.wikidata.org/entity/>
+PREFIX wdt: <http://www.wikidata.org/prop/direct/>
+PREFIX wikibase: <http://wikiba.se/ontology#>
+PREFIX p: <http://www.wikidata.org/prop/>
+PREFIX ps: <http://www.wikidata.org/prop/statement/>
+PREFIX pq: <http://www.wikidata.org/prop/qualifier/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+SELECT ?ministre ?ministere ?ministre_label ?ministere_label ?date_debut ?date_fin
+WHERE
+{
+        ?ministre wdt:P27 wd:Q142 . # ministres de nationalite (P27) française (Q142)
+        ?ministre p:P39 ?statement . # avec un statement P39 (fonction)
+        ?statement ps:P39 ?ministere . # où la fonction est une
+        ?ministere wdt:P279* wd:Q83307 . # ... une sous-classe (P279) de ministère (Q83307)
+        ?statement pq:P580 ?date_debut . # avec une qualification de la date de début (P580)
+        OPTIONAL {?statement pq:P582 ?date_fin .}
+        OPTIONAL {?ministre rdfs:label ?ministre_label filter (lang(?ministre_label) = "fr") .}
+        OPTIONAL {?ministere rdfs:label ?ministere_label filter (lang(?ministere_label) = "fr").}
+}
+ORDER BY ASC(?date_debut)
