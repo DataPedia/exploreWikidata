@@ -22,10 +22,13 @@ On peut aussi utiliser les préfixes :
 
 * [HackFrancophonie](https://github.com/etalab/HackFrancophonie/tree/master/data/sparql_wikidata)
 * [Base des logiciels](https://gist.github.com/pachevalier/70e345b01c81dcb7b3d0)
+* [SPARQL Protocol and RDF Query Language](https://fr.wikiversity.org/wiki/SPARQL_Protocol_and_RDF_Query_Language)
+  * [Manuel SPARQL](https://fr.wikiversity.org/wiki/SPARQL_Protocol_and_RDF_Query_Language/Requ%C3%AAtes_de_d%C3%A9couverte)
 
 ### Ressources
 
 * [Liste d'exemples](https://www.mediawiki.org/wiki/Wikibase/Indexing/SPARQL_Query_Examples)
+* [Liste d'exemples](https://github.com/wikimedia/wikidata-query-rdf/blob/master/docs/sparql-query-examples.md)
 
 ## Automatiser les requêtes avec curl
 

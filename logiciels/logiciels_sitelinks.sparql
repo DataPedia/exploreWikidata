@@ -1,0 +1,22 @@
+PREFIX wd: <http://www.wikidata.org/entity/>
+PREFIX wdt: <http://www.wikidata.org/prop/direct/>
+PREFIX wikibase: <http://wikiba.se/ontology#>
+PREFIX p: <http://www.wikidata.org/prop/>
+PREFIX ps: <http://www.wikidata.org/prop/statement/>
+PREFIX pq: <http://www.wikidata.org/prop/qualifier/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+SELECT ?logiciel ?logiciel_frlabel (COUNT(distinct ?sitelink) as ?count)
+WHERE
+{
+        ?logiciel p:P31 ?statement .
+        ?statement ps:P31 ?instanceof .
+        ?instanceof wdt:P279* wd:Q7397 .
+		OPTIONAL {
+          ?logiciel rdfs:label ?logiciel_frlabel filter (lang(?logiciel_frlabel) = "fr") .}
+  		OPTIONAL {
+          ?sitelink schema:about ?logiciel .
+        }
+}
+GROUP BY ?logiciel ?logiciel_frlabel
+ORDER BY DESC(?count)

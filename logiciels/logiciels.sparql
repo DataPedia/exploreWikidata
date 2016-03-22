@@ -1,0 +1,58 @@
+PREFIX wd: <http://www.wikidata.org/entity/>
+PREFIX wdt: <http://www.wikidata.org/prop/direct/>
+PREFIX wikibase: <http://wikiba.se/ontology#>
+PREFIX p: <http://www.wikidata.org/prop/>
+PREFIX ps: <http://www.wikidata.org/prop/statement/>
+PREFIX pq: <http://www.wikidata.org/prop/qualifier/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+SELECT ?logiciel ?logiciel_frlabel ?logiciel_enlabel ?frwiki ?licence ?licence_frlabel ?site_officiel ?developpeur ?developpeur_frlabel ?os ?os_frlabel ?tag_stackexchange ?versions ?code_source ?freebase ?langage_programmation ?suivi_bugs ?frwikibook ?image ?logotype
+WHERE
+{
+        ?logiciel p:P31 ?statement .
+        ?statement ps:P31 ?instanceof .
+        ?instanceof wdt:P279* wd:Q7397 .
+      OPTIONAL {?logiciel rdfs:label ?logiciel_frlabel filter (lang(?logiciel_frlabel) = "fr") .}
+  		OPTIONAL {?logiciel rdfs:label ?logiciel_enlabel filter (lang(?logiciel_enlabel) = "en") .}
+  		OPTIONAL {?frwiki schema:about ?logiciel . ?frwiki schema:inLanguage "fr"
+		FILTER (SUBSTR(str(?frwiki), 1, 30) = "https://fr.wikipedia.org/wiki/")}
+		OPTIONAL {?frwikibook schema:about ?logiciel . ?frwikibook schema:inLanguage "fr"
+		FILTER (SUBSTR(str(?frwikibook), 1, 30) = "https://fr.wikibook.org/wiki/")}
+        OPTIONAL {
+          ?logiciel wdt:P275 ?licence .
+          ?licence rdfs:label ?licence_frlabel filter (lang(?licence_frlabel) = "fr") .
+        }
+		OPTIONAL {?logiciel wdt:P856 ?site_officiel .}
+		OPTIONAL {
+          ?logiciel wdt:P178 ?developpeur .
+		  ?developpeur rdfs:label ?developpeur_frlabel filter (lang(?developpeur_frlabel) = "fr") .
+        }
+        OPTIONAL {
+          ?logiciel wdt:P306 ?os .
+		  ?os rdfs:label ?os_frlabel filter (lang(?os_frlabel) = "fr") .
+        }
+  		OPTIONAL {
+		  ?logiciel wdt:P1482 ?tag_stackexchange .
+          }
+  		OPTIONAL {
+          ?logiciel wdt:P348 ?versions .
+          }
+  		OPTIONAL {
+          ?logiciel wdt:P1324 ?code_source .
+          }
+  		OPTIONAL {
+          ?logiciel wdt:P646 ?freebase .
+        }
+  		OPTIONAL {
+          ?logiciel wdt:P277 ?langage_programmation .
+        }
+  		OPTIONAL {
+          ?logiciel wdt:P1401 ?suivi_bugs .
+        }
+  		OPTIONAL {
+          ?logiciel wdt:P18 ?image .
+        	}
+  		OPTIONAL {
+          ?logiciel wdt:P154 ?logotype .
+        }
+}
